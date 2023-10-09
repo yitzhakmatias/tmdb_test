@@ -34,6 +34,8 @@ To run this project, you will need to add the following environment variables to
 
 `MOVIEDB_BEARER=<YOUR_BEARER>`
 
+`API_KEY=<API_KEY>`
+
 ## Run Locally
 
 Clone the project
