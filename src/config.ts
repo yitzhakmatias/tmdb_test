@@ -16,6 +16,7 @@ class Config {
   public DB_NAME: string;
   public DB_USER: string;
   public DB_PASSWORD: string;
+  public API_KEY: string;
   public MOVIEDB_BEARER: string;
 
   private readonly DEFAULT_DATA_BASE_URL = '';
@@ -32,6 +33,7 @@ class Config {
     this.DB_NAME = process.env.DB_NAME || 'tmdb';
     this.DB_USER = process.env.DB_USER || 'admin';
     this.DB_PASSWORD = process.env.DB_PASSWORD || 'password';
+    this.API_KEY = process.env.API_KEY || '01e0dd049439b64e413990a46062cb64';
     this.MOVIEDB_BEARER =
       process.env.MOVIEDB_BEARER ||
       'MOVIEDB_BEARERBearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMWUwZGQwNDk0MzliNjRlNDEzOTkwYTQ2MDYyY2I2NCIsInN1YiI6IjY1MTM2OTFmY2FkYjZiMDJiZGViM2JhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pZ2rdeAaLD7SXaUUDFtCL7Tgd943bf8UBIXcekwvwdk';

@@ -70,7 +70,7 @@ class MovieService {
   }
 
   public async getMoviesFromTMDB(imdbId: string): Promise<any> {
-    const url = `https://api.themoviedb.org/3/movie/${imdbId}?api_key=01e0dd049439b64e413990a46062cb64`;
+    const url = `https://api.themoviedb.org/3/movie/${imdbId}?api_key=${config.API_KEY}`;
 
     const options = {
       method: 'GET',
