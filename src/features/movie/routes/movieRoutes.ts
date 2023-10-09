@@ -7,7 +7,7 @@ class MovieRoutes {
     this.router = express.Router();
   }
   public routers(): Router {
-    this.router.post('/submit', Movies.prototype.create);
+    this.router.post('/reviews', Movies.prototype.create);
     this.router.get('/movies/:tmdbId/reviews', Movies.prototype.getReviewsByTmbdId);
 
     return this.router;
