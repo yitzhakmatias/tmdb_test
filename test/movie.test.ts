@@ -4,7 +4,7 @@ import chaiHttp from 'chai-http';
 import { application } from '@root/app';
 import Movie from '@movie/models/movie.schema';
 import Rating from '@rating/models/rating.schema';
-//import sequelize from '@root/setupDb';
+import sequelize from '@root/setupDb';
 chai.use(chaiHttp);
 const expect = chai.expect;
 const app = application.initialize();
@@ -49,19 +49,12 @@ describe('API Tests', () => {
         movieId: typeof id2 === 'string' ? parseInt(id2) : 0 // Assuming this corresponds to the second movie
       }
     ]);
-    //await sequelize.sync({ force: true });
+    await sequelize.sync({ force: true });
   });
-
-  after(async () => {
-    // Clean up any database fixtures after running tests
-    // Example: Delete the inserted sample data
-    await Movie.destroy({ where: { tmdbId: ['12345', '67890'] } });
-    await Rating.destroy({ where: { userName: ['user1', 'user2', 'user3'] } });
-  });
-
   describe('GET /movies/:tmdbId/reviews', () => {
     it('should return movie information along with reviews', async () => {
-      const response = await chai.request(app).get('/movies/:tmdbId/reviews'); // Replace :tmdbId with an actual value
+      const tmdbId = '678512';
+      const response = await chai.request(app).get(`/movies/${tmdbId}/reviews`);
 
       expect(response).to.have.status(200);
       expect(response.body).to.be.an('object');
@@ -83,12 +76,13 @@ describe('API Tests', () => {
 
   describe('GET /users/:userName/reviews', () => {
     it('should return reviews submitted by a specific user', async () => {
-      const response = await chai.request(app).get('/users/:userName/reviews'); // Replace :userName with an actual value
+      const userName = 'user1';
+      const response = await chai.request(app).get(`/users/${userName}/reviews`);
+      // Replace :userName with an actual value
 
       expect(response).to.have.status(200);
       expect(response.body).to.be.an('array');
       expect(response.body.length).to.be.greaterThan(0);
-      // Add more assertions as needed to validate the response structure
     });
 
     it('should return 404 for a user with no reviews', async () => {
@@ -97,5 +91,11 @@ describe('API Tests', () => {
       expect(response).to.have.status(404);
       expect(response.body).to.have.property('message', 'No reviews found for this user');
     });
+  });
+  after(async () => {
+    // Clean up any database fixtures after running tests
+    // Example: Delete the inserted sample data
+    await Movie.destroy({ where: { tmdbId: ['12345', '67890'] } });
+    await Rating.destroy({ where: { userName: ['user1', 'user2', 'user3'] } });
   });
 });
