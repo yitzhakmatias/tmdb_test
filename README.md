@@ -8,42 +8,72 @@ Before running the application, ensure you have the following prerequisites inst
 
 - Node.js (https://nodejs.org/)
 - PostgreSQL database (https://www.postgresql.org/)
+## Environment Variables
 
-## Getting Started
+To run this project, you will need to add the following environment variables to your .env file
 
-1. Clone the repository:
+`JWT_TOKEN=thisIsToken`
 
-   ```bash
-   git clone <repository-url>
-   cd tmdb_api
+`NODE_ENV=develop`
 
-2 Install dependencies:
+`SECRET_COOKIE_ONE=token1`
 
-bash
-Copy code
-npm install
+`SECRET_COOKIE_TWO=token2`
 
-3 Create a .env file in the project root directory and add the following environment variables:
+`CLIENT_URL=http://localhost:5000`
 
-env
-Copy code
-JWT_TOKEN=thisIsToken
-NODE_ENV=develop
-SECRET_COOKIE_ONE=token1
-SECRET_COOKIE_TWO=token2
-CLIENT_URL=http://localhost:5000
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=tmdb
-DB_USER=admin
-DB_PASSWORD=password
-MOVIEDB_BEARER=<YOUR_BEARER>
-4 Start the application:
+`DB_HOST=localhost`
 
-bash
-Copy code
-npm start
+`DB_PORT=5432`
 
-5 Usage
+`DB_NAME=tmdb`
+
+`DB_USER=admin`
+
+`DB_PASSWORD=password`
+
+`MOVIEDB_BEARER=<YOUR_BEARER>`
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/yitzhakmatias/tmdb_test
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+## Usage/Examples
 Use an API client (e.g., Postman) to make requests to the API endpoints.
 Refer to your API documentation for available endpoints and usage.
+```javascript
+POST /api/v1/reviews
+{
+"tmdbId": 100
+"userName": "John Doe",
+"rating": 8
+}
+Fetch all reviews of a particular movie along with its information (Title, release date, poster, and overview).
+GET /api/v1/movies/{tmdbId}/reviews
+Fetch all reviews submitted by a specific user.
+GET /api/v1/users/{userName}/reviews
+```
+
+
